@@ -10,9 +10,12 @@ import Calculator from './components/apps/Calculator';
 import Notepad from './components/apps/Notepad';
 import TicTacToe from './components/apps/TicTacToe';
 import PlaceholderApp from './components/apps/PlaceholderApp';
+import FileExplorer from './components/apps/FileExplorer';
 
 const App = () => {
   const [activeApp, setActiveApp] = useState();
+  const [nextZIndex, setNextZIndex] = useState(1);
+
 
   const openApp = (appId) => {
     setActiveApp(appId);
@@ -29,25 +32,26 @@ const App = () => {
 
     let AppComponent;
     let appTitle = "Application";
-
+    
+    console.log(activeApp)
     switch (activeApp) {
-      case 'notepad':
+      case 'Notepad':
         AppComponent = Notepad;
         appTitle = 'Notepad';
         break;
-      case 'calculator':
+      case 'Calculator':
         AppComponent = Calculator;
         appTitle = 'Calculator';
         break;
-      case 'tictactoe':
+      case 'Tic Tac Toe':
         AppComponent = TicTacToe;
         appTitle = 'Tic Tac Toe';
         break;
-      case 'filemanager':
-        AppComponent = () => <PlaceholderApp appName="File Manager" />;
-        appTitle = 'File Manager';
+      case 'File Manager':
+        AppComponent = () => <FileExplorer />;
+        appTitle = 'File Explorer';
         break;
-      case 'recyclebin':
+      case 'Recycle Bin':
         AppComponent = () => <PlaceholderApp appName="Recycle Bin" />;
         appTitle = 'Recycle Bin';
         break;

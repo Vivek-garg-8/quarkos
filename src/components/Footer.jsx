@@ -25,10 +25,10 @@ const Footer = ({ openApp }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const menuApps = [
-        { id: 'filemanager', name: 'File Explorer', icon: <FileManagerIcon /> },
-        { id: 'calculator', name: 'Calculator', icon: <CalculatorIcon /> },
-        { id: 'notepad', name: 'Notepad', icon: <NotepadIcon /> },
-        { id: 'tictactoe', name: 'Tic Tac Toe', icon: <TicTacToeIcon /> },
+        { id: 'File Manager', name: 'File Explorer', icon: <FileManagerIcon /> },
+        { id: 'Calculator', name: 'Calculator', icon: <CalculatorIcon /> },
+        { id: 'Notepad', name: 'Notepad', icon: <NotepadIcon /> },
+        { id: 'Tic Tac Toe', name: 'Tic Tac Toe', icon: <TicTacToeIcon /> },
     ];
 
     const handleAppClick = (appId) => {

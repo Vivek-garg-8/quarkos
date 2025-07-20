@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ContextMenu from './ContextMenu';
+import { useFileSystem } from '../contexts/FileSystemContext';
 
 // --- Icon Components ---
 const FileManagerIcon = () => (<img src="src/assets/file_manager.png" alt="File Manager" className="w-full h-full object-contain" />);
@@ -9,6 +10,15 @@ const TicTacToeIcon = () => (<img src="src/assets/tic-tac-toe-icon.svg" alt="Tic
 const CalculatorIcon = () => (<img src="src/assets/calculator-icon.png" alt="Calculator" className="w-full h-full object-contain" />);
 const FolderIcon = () => (<img src="src/assets/folder-icon.png" alt="Folder" className="w-full h-full object-contain" />);
 
+const appIcons = {
+  filemanager: <FileManagerIcon />,
+  recyclebin: <RecycleBinIcon />,
+  notepad: <NotepadIcon />,
+  tictactoe: <TicTacToeIcon />,
+  calculator: <CalculatorIcon />,
+  folder: <FolderIcon />,
+};
+
 const wallpapers = [
     'src/assets/background1.png',
     'src/assets/background2.png',
@@ -17,18 +27,17 @@ const wallpapers = [
 ];
 
 const Home = ({ openApp }) => {
-  const initialApps = [
-    { id: 'filemanager', name: 'File Manager', icon: <FileManagerIcon /> },
-    { id: 'recyclebin', name: 'Recycle bin', icon: <RecycleBinIcon /> },
-    { id: 'notepad', name: 'Notepad', icon: <NotepadIcon /> },
-    { id: 'tictactoe', name: 'Tic Tac Toe', icon: <TicTacToeIcon /> },
-    { id: 'calculator', name: 'Calculator', icon: <CalculatorIcon /> },
-  ];
+  const { fs, setFs } = useFileSystem();
 
-  const [desktopApps, setDesktopApps] = useState(initialApps);
   const [contextMenu, setContextMenu] = useState({ visible: false, x: 0, y: 0 });
   // State to track the current wallpaper
   const [currentWallpaperIndex, setCurrentWallpaperIndex] = useState(0);
+
+  const desktopPath = fs['C:'].children['Users'].children['Public'].children['Desktop'];
+  const desktopItems = Object.entries(desktopPath.children).map(([name, item]) => ({
+      id: name,
+      ...item
+  }));
 
   const handleContextMenu = (e) => {
     e.preventDefault();
@@ -40,12 +49,13 @@ const Home = ({ openApp }) => {
   };
 
   const handleNewFolder = () => {
-    const newFolder = {
-      id: `folder-${Date.now()}`,
-      name: 'New Folder',
-      icon: <FolderIcon />,
-    };
-    setDesktopApps([...desktopApps, newFolder]);
+    setFs(currentFs => {
+        const newFs = { ...currentFs };
+        const desktop = newFs['C:'].children['Users'].children['Public'].children['Desktop'];
+        const newFolderName = `New Folder ${Object.keys(desktop.children).length + 1}`;
+        desktop.children[newFolderName] = { type: 'folder', children: {} };
+        return newFs;
+    });
   };
 
   const handleRefresh = () => {
@@ -57,7 +67,6 @@ const Home = ({ openApp }) => {
     }
   };
 
-  // This function now cycles through the wallpapers array
   const handleChangeWallpaper = () => {
     setCurrentWallpaperIndex((prevIndex) => (prevIndex + 1) % wallpapers.length);
   };
@@ -76,14 +85,14 @@ const Home = ({ openApp }) => {
       style={{ backgroundImage: `url(${wallpapers[currentWallpaperIndex]})` }}
     >
       <div className='flex flex-col flex-wrap content-start h-full gap-4'>
-        {desktopApps.map(app => (
+      {desktopItems.map(item => (
           <div 
-            key={app.id} 
-            onClick={() => openApp && openApp(app.id)}
+            key={item.id} 
+            onClick={() => openApp && openApp(item.id)}
             className='flex flex-col items-center justify-center w-24 h-24 p-2 rounded-lg hover:bg-black/20 cursor-pointer transition-colors duration-200'
           >
-            <div className='w-12 h-12'>{app.icon}</div>
-            <span className='text-white text-xs mt-2 text-center select-none'>{app.name}</span>
+            <div className='w-12 h-12'>{appIcons[item.type] || appIcons['folder']}</div>
+            <span className='text-white text-xs mt-2 text-center select-none'>{item.id}</span>
           </div>
         ))}
       </div>
