@@ -1,64 +1,29 @@
 import React, { useState } from "react";
 import ContextMenu from "./ContextMenu";
 import { useFileSystem } from "../contexts/FileSystemContext";
+import fileManagerIconSrc from '../assets/file_manager.png';
+import recycleBinIconSrc from '../assets/recycl-bin.png';
+import notepadIconSrc from '../assets/notepad.png';
+import ticTacToeIconSrc from '../assets/tic-tac-toe-icon.svg';
+import calculatorIconSrc from '../assets/calculator-icon.png';
+import folderIconSrc from '../assets/folder-icon.png';
 
-const FileManagerIcon = () => (
-  <img
-    src="src/assets/file_manager.png"
-    alt="File Manager"
-    className="w-full h-full object-contain"
-  />
-);
-const RecycleBinIcon = () => (
-  <img
-    src="src/assets/recycl-bin.png"
-    alt="Recycle Bin"
-    className="w-full h-full object-contain"
-  />
-);
-const NotepadIcon = () => (
-  <img
-    src="src/assets/notepad.png"
-    alt="Notepad"
-    className="w-full h-full object-contain"
-  />
-);
-const TicTacToeIcon = () => (
-  <img
-    src="src/assets/tic-tac-toe-icon.svg"
-    alt="Tic Tac Toe"
-    className="w-full h-full object-contain"
-  />
-);
-const CalculatorIcon = () => (
-  <img
-    src="src/assets/calculator-icon.png"
-    alt="Calculator"
-    className="w-full h-full object-contain"
-  />
-);
-const FolderIcon = () => (
-  <img
-    src="src/assets/folder-icon.png"
-    alt="Folder"
-    className="w-full h-full object-contain"
-  />
-);
+
+import background1 from '../assets/background1.png';
+import background2 from '../assets/background2.png';
+import background3 from '../assets/background3.png';
+
+
+// --- Icon Components ---
+const FileManagerIcon = () => (<img src={fileManagerIconSrc} alt="File Manager" className="w-full h-full object-contain" />);
+const RecycleBinIcon = () => (<img src={recycleBinIconSrc} alt="Recycle Bin" className="w-full h-full object-contain" />);
+const NotepadIcon = () => (<img src={notepadIconSrc} alt="Notepad" className="w-full h-full object-contain" />);
+const TicTacToeIcon = () => (<img src={ticTacToeIconSrc} alt="Tic Tac Toe" className="w-full h-full object-contain" />);
+const CalculatorIcon = () => (<img src={calculatorIconSrc} alt="Calculator" className="w-full h-full object-contain" />);
+const FolderIcon = () => (<img src={folderIconSrc} alt="Folder" className="w-full h-full object-contain" />);
 const FileIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="h-12 w-12 text-black-300"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    {" "}
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
-    />{" "}
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" >
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
   </svg>
 );
 
@@ -72,11 +37,7 @@ const appIcons = {
   file: <FileIcon />,
 };
 
-const wallpapers = [
-  "src/assets/background1.png",
-  "src/assets/background2.png",
-  "src/assets/background3.png",
-];
+const wallpapers = [background1, background2, background3];
 
 const Home = ({ openApp }) => {
   const { fs, setFs , createItem } = useFileSystem();
