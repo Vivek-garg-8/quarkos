@@ -49,7 +49,7 @@ const Notepad = ({ appData }) => {
   ];
 
   return (
-    <div className="w-[480px] h-[400px] bg-zinc-900 rounded-b-xl flex flex-col text-white">
+    <div className="w-full h-full bg-zinc-900 rounded-b-xl flex flex-col text-white">
       <MenuBar items={menuItems} />
       <textarea
         value={content}

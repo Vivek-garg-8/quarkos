@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const Square = ({ value, onClick }) => (
-  <button 
-    className="w-24 h-24 bg-zinc-700 rounded-lg flex items-center justify-center text-4xl font-bold text-white transition-colors duration-200 hover:bg-zinc-600"
+  <button
+    className="w-full aspect-square bg-zinc-700 rounded-lg flex items-center justify-center text-4xl font-bold text-white transition-colors duration-200 hover:bg-zinc-600"
     onClick={onClick}
   >
     {value}
@@ -20,11 +20,10 @@ const TicTacToe = () => {
     if (winner || board[i]) {
       return;
     }
-    
+
     const newBoard = board.slice();
-    // Set the square to 'X' or 'O'
     newBoard[i] = isXNext ? 'X' : 'O';
-    
+
     setBoard(newBoard);
     setIsXNext(!isXNext);
   };
@@ -44,25 +43,30 @@ const TicTacToe = () => {
   }
 
   return (
-    <div className="bg-zinc-800 p-6 rounded-xl shadow-lg flex flex-col items-center">
-      <h2 className="text-3xl font-bold text-white mb-4">Tic Tac Toe</h2>
-      
-      {/* Game Status Display */}
-      <div className="text-xl text-white mb-4">{status}</div>
-
-      {/* Game Board */}
-      <div className="grid grid-cols-3 gap-3 mb-4">
-        {board.map((value, i) => (
-          <Square key={i} value={value} onClick={() => handleClick(i)} />
-        ))}
+    <div className="w-full h-full bg-zinc-800 p-6 rounded-b-xl shadow-lg flex flex-col items-center">
+      <div className="flex-shrink-0 text-center mb-4">
+        <h2 className="text-3xl font-bold text-white">Tic Tac Toe</h2>
+        <div className="text-xl text-white mt-2">{status}</div>
       </div>
 
-      <button 
-        onClick={handleReset}
-        className="bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600 transition-colors duration-200"
-      >
-        Reset Game
-      </button>
+      <div className="flex-grow w-full flex items-center justify-center">
+        <div className="w-full max-w-sm">
+            <div className="grid grid-cols-3 gap-3">
+                {board.map((value, i) => (
+                <Square key={i} value={value} onClick={() => handleClick(i)} />
+                ))}
+            </div>
+        </div>
+      </div>
+
+      <div className="flex-shrink-0 mt-4">
+        <button
+            onClick={handleReset}
+            className="bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600 transition-colors duration-200"
+        >
+            Reset Game
+        </button>
+      </div>
     </div>
   );
 };

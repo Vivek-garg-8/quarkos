@@ -80,7 +80,7 @@ const FileExplorer = ({ openApp }) => {
   };
 
   return (
-    <div className="w-[80vw] h-[70vh] bg-zinc-900 rounded-b-xl flex flex-col text-white">
+    <div className="w-full h-full bg-zinc-900 rounded-b-xl flex flex-col text-white">
       <MenuBar items={menuBarItems} />
       <div className="flex flex-grow overflow-hidden">
         <div className="w-1/3 bg-zinc-800 p-2 border-r border-zinc-700 overflow-y-auto">
