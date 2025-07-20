@@ -1,24 +1,16 @@
 import React, { useState } from 'react';
+import fileManagerIconSrc from '../assets/file_manager.png';
+import notepadIconSrc from '../assets/notepad.png';
+import ticTacToeIconSrc from '../assets/tic-tac-toe-icon.svg';
+import calculatorIconSrc from '../assets/calculator-icon.png';
+import searchIconSrc from '../assets/search-icon.png';
 
-const FileManagerIcon = () => (
-    <img src="src/assets/file_manager.png" alt="File Manager" className="w-full h-full object-contain" />
-);
 
-const NotepadIcon = () => (
-    <img src="src/assets/notepad.png" alt="Notepad" className="w-full h-full object-contain" />
-);
-
-const TicTacToeIcon = () => (
-    <img src="src/assets/tic-tac-toe-icon.svg" alt="Notepad" className="w-full h-full object-contain" />
-);
-
-const SearchIcon = () => (
-    <img src="src/assets/search-icon.png" alt="Tic Tac Toe" className="w-full h-full object-contain" />
-);
-
-const CalculatorIcon = () => (
-    <img src="src/assets/calculator-icon.png" alt="Calculator" className="w-full h-full object-contain" />
-);
+const FileManagerIcon = () => (<img src={fileManagerIconSrc} alt="File Manager" className="w-full h-full object-contain" />);
+const NotepadIcon = () => (<img src={notepadIconSrc} alt="Notepad" className="w-full h-full object-contain" />);
+const TicTacToeIcon = () => (<img src={ticTacToeIconSrc} alt="Tic Tac Toe" className="w-full h-full object-contain" />);
+const CalculatorIcon = () => (<img src={calculatorIconSrc} alt="Calculator" className="w-full h-full object-contain" />);
+const SearchIcon = () => (<img src={searchIconSrc} alt="Tic Tac Toe" className="w-full h-full object-contain" />);
 
 const Footer = ({ openApp }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);

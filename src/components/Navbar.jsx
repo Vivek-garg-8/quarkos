@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import wifiIconSrc from '../assets/wifi.png';
+import bluetoothIconSrc from '../assets/bluetooth.png';
+import batteryIconSrc from '../assets/battery.png';
+import volumeonIconSrc from '../assets/volume-on.png';
 
 const Navbar = () => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -21,16 +25,16 @@ const Navbar = () => {
       <div className="icons">
         <ul className='flex gap-2 items-center'>
           <li className='cursor-pointer transition-transform duration-200 hover:scale-110'>
-            <img width={30} src="src/assets/wifi.png" alt="Wi-Fi" />
+            <img width={30} src={wifiIconSrc} alt="Wi-Fi" />
           </li>
           <li className='cursor-pointer transition-transform duration-200 hover:scale-110'>
-            <img width={30} src="src/assets/bluetooth.png" alt="Bluetooth" />
+            <img width={30} src={bluetoothIconSrc} alt="Bluetooth" />
           </li>
           <li className='cursor-pointer transition-transform duration-200 hover:scale-110'>
-            <img width={30} src="src/assets/battery.png" alt="Battery" />
+            <img width={30} src={batteryIconSrc} alt="Battery" />
           </li>
           <li className='cursor-pointer transition-transform duration-200 hover:scale-110'>
-            <img width={30} src="src/assets/volume-on.png" alt="Volume" />
+            <img width={30} src={volumeonIconSrc} alt="Volume" />
           </li>
         </ul>
       </div>
