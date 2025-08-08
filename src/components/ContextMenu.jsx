@@ -20,7 +20,7 @@ const ContextMenu = ({ x, y, items = [], onClose }) => {
   return (
     <div
       ref={menuRef}
-      className="absolute bg-zinc-800/90 backdrop-blur-xl text-white rounded-md shadow-lg py-2 w-48 z-50"
+      className="absolute bg-white/95 backdrop-blur-xl text-gray-800 rounded-lg shadow-xl py-2 w-48 z-50 border border-gray-200"
       style={{ top: y, left: x }}
     >
       <ul>
@@ -31,7 +31,7 @@ const ContextMenu = ({ x, y, items = [], onClose }) => {
               item.onClick();
               onClose();      
             }}
-            className="px-4 py-2 hover:bg-zinc-700 cursor-pointer text-sm"
+            className="px-4 py-2 hover:bg-blue-500 hover:text-white cursor-pointer text-sm transition-colors duration-150"
           >
             {item.label}
           </li>

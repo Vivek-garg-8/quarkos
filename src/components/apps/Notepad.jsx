@@ -49,12 +49,12 @@ const Notepad = ({ appData }) => {
   ];
 
   return (
-    <div className="w-full h-full bg-zinc-900 rounded-b-xl flex flex-col text-white">
+    <div className="w-full h-full bg-white flex flex-col">
       <MenuBar items={menuItems} />
       <textarea
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        className="flex-grow bg-zinc-900 text-white p-4 focus:outline-none"
+        className="flex-grow bg-white text-gray-900 p-4 focus:outline-none resize-none border-none"
         placeholder="Start typing..."
       />
     </div>

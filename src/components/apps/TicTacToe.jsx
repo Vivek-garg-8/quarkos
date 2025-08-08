@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const Square = ({ value, onClick }) => (
   <button
-    className="w-full aspect-square bg-zinc-700 rounded-lg flex items-center justify-center text-4xl font-bold text-white transition-colors duration-200 hover:bg-zinc-600"
+    className="w-full aspect-square bg-gray-100 border-2 border-gray-300 rounded-lg flex items-center justify-center text-4xl font-bold text-gray-900 transition-colors duration-200 hover:bg-gray-200"
     onClick={onClick}
   >
     {value}
@@ -43,10 +43,10 @@ const TicTacToe = () => {
   }
 
   return (
-    <div className="w-full h-full bg-zinc-800 p-6 rounded-b-xl shadow-lg flex flex-col items-center">
+    <div className="w-full h-full bg-white p-6 flex flex-col items-center">
       <div className="flex-shrink-0 text-center mb-4">
-        <h2 className="text-3xl font-bold text-white">Tic Tac Toe</h2>
-        <div className="text-xl text-white mt-2">{status}</div>
+        <h2 className="text-3xl font-bold text-gray-900">Tic Tac Toe</h2>
+        <div className="text-xl text-gray-700 mt-2">{status}</div>
       </div>
 
       <div className="flex-grow w-full flex items-center justify-center">
@@ -62,7 +62,7 @@ const TicTacToe = () => {
       <div className="flex-shrink-0 mt-4">
         <button
             onClick={handleReset}
-            className="bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600 transition-colors duration-200"
+            className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200"
         >
             Reset Game
         </button>

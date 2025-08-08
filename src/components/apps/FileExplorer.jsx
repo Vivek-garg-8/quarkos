@@ -27,6 +27,7 @@ const TreeView = ({ data, onSelect, path = [] }) => {
     const toggleExpand = (name) => setExpanded(prev => ({ ...prev, [name]: !prev[name] }));
 
     return ( <ul className="text-white text-sm"> {Object.entries(data).map(([name, item]) => { const isFolder = item.type === "folder" || item.type === "drive"; const currentItemPath = [...path, name]; return ( <li key={name} className="my-1"> <div className="flex items-center gap-2 p-1 rounded-md hover:bg-zinc-700 cursor-pointer" onClick={() => { if (isFolder) toggleExpand(name); onSelect(item, currentItemPath, name); }} > {isFolder && <span className="w-4">{expanded[name] ? "▼" : "►"}</span>} <div className="w-5 h-5">{item.type === "drive" ? <DriveIcon /> : isFolder ? <FolderIcon isOpen={expanded[name]} /> : <FileIcon />}</div> <span>{name}</span> </div> {isFolder && expanded[name] && ( <div className="pl-6 border-l border-zinc-600"> <TreeView data={item.children} onSelect={onSelect} path={currentItemPath} /> </div> )} </li> ); })} </ul> );
+    return ( <ul className="text-gray-900 text-sm"> {Object.entries(data).map(([name, item]) => { const isFolder = item.type === "folder" || item.type === "drive"; const currentItemPath = [...path, name]; return ( <li key={name} className="my-1"> <div className="flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 cursor-pointer" onClick={() => { if (isFolder) toggleExpand(name); onSelect(item, currentItemPath, name); }} > {isFolder && <span className="w-4">{expanded[name] ? "▼" : "►"}</span>} <div className="w-5 h-5">{item.type === "drive" ? <DriveIcon /> : isFolder ? <FolderIcon isOpen={expanded[name]} /> : <FileIcon />}</div> <span>{name}</span> </div> {isFolder && expanded[name] && ( <div className="pl-6 border-l border-gray-300"> <TreeView data={item.children} onSelect={onSelect} path={currentItemPath} /> </div> )} </li> ); })} </ul> );
 };
 
 
@@ -80,23 +81,23 @@ const FileExplorer = ({ openApp }) => {
   };
 
   return (
-    <div className="w-full h-full bg-zinc-900 rounded-b-xl flex flex-col text-white">
+    <div className="w-full h-full bg-white flex flex-col text-gray-900">
       <MenuBar items={menuBarItems} />
       <div className="flex flex-grow overflow-hidden">
-        <div className="w-1/3 bg-zinc-800 p-2 border-r border-zinc-700 overflow-y-auto">
+        <div className="w-1/3 bg-gray-50 p-2 border-r border-gray-200 overflow-y-auto">
           <h3 className="font-bold p-2">File System</h3>
           <TreeView data={fs} onSelect={handleTreeSelect} path={[]} />
         </div>
         <div className="w-2/3 flex flex-col">
-          <div className="flex-shrink-0 h-12 bg-zinc-700 p-2 flex items-center gap-2 border-b border-zinc-600">
+          <div className="flex-shrink-0 h-12 bg-gray-100 p-2 flex items-center gap-2 border-b border-gray-200">
             <button
               onClick={handleGoBack}
               disabled={currentPath.length <= 1}
-              className="px-3 py-1 bg-zinc-600 rounded-md text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-zinc-500"
+              className="px-3 py-1 bg-gray-200 rounded-md text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300"
             >
               &larr;
             </button>
-            <div className="bg-zinc-900 text-gray-300 px-3 py-1 rounded-md text-sm flex-grow truncate">
+            <div className="bg-white border border-gray-300 text-gray-700 px-3 py-1 rounded-md text-sm flex-grow truncate">
               {currentPath.join(" > ")}
             </div>
           </div>
@@ -110,8 +111,8 @@ const FileExplorer = ({ openApp }) => {
                     setSelectedInView(name);
                   }}
                   onDoubleClick={() => handleNavigate(name)}
-                  className={`p-2 text-white flex items-center gap-3 cursor-pointer rounded-md ${
-                    selectedInView === name ? 'bg-blue-600' : 'hover:bg-zinc-700'
+                  className={`p-2 text-gray-900 flex items-center gap-3 cursor-pointer rounded-md ${
+                    selectedInView === name ? 'bg-blue-500 text-white' : 'hover:bg-gray-100'
                   }`}
                 >
                   {item.type.includes("folder") || item.type === "drive" ? (

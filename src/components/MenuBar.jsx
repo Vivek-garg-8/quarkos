@@ -18,22 +18,22 @@ const MenuBar = ({ items }) => {
     };
 
     return (
-        <nav ref={menuRef} className="bg-zinc-700 text-white text-sm flex items-center px-2 h-8 flex-shrink-0 border-b border-zinc-600">
+        <nav ref={menuRef} className="bg-gray-100 text-gray-900 text-sm flex items-center px-2 h-8 flex-shrink-0 border-b border-gray-200">
             {items.map(menu => (
                 <div key={menu.label} className="relative">
                     <button 
                         onClick={() => handleMenuClick(menu.label)} 
-                        className="px-3 py-1 hover:bg-zinc-600 rounded-md"
+                        className="px-3 py-1 hover:bg-gray-200 rounded-md"
                     >
                         {menu.label}
                     </button>
                     {openMenu === menu.label && (
-                        <ul className="absolute top-full left-0 mt-1 w-48 bg-zinc-800 rounded-md shadow-lg py-1 z-50">
+                        <ul className="absolute top-full left-0 mt-1 w-48 bg-white border border-gray-200 rounded-md shadow-lg py-1 z-50">
                             {menu.actions.map(action => (
                                 <li 
                                     key={action.label} 
                                     onClick={() => { if (!action.disabled) { action.onClick(); setOpenMenu(null); } }} 
-                                    className={`px-3 py-1 ${action.disabled ? 'text-gray-500 cursor-not-allowed' : 'hover:bg-zinc-700 cursor-pointer'}`}
+                                    className={`px-3 py-1 ${action.disabled ? 'text-gray-400 cursor-not-allowed' : 'hover:bg-blue-500 hover:text-white cursor-pointer'}`}
                                 >
                                     {action.label}
                                 </li>
